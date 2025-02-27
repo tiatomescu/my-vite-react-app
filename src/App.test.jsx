@@ -1,12 +1,34 @@
 import {render, screen, fireEvent} from "@testing-library/react";
 import App from "./App";
 
-test("Renders correctly", () => {
-  render(<App />);
+describe("App", () => {
+  beforeEach(() => {
+    // Arrange
+    render(<App />);
+  });
 
-  expect(screen.getByText(/count is 0/i)).toBeInTheDocument();
+  test("Renders the App", () => {
+    // Act
+    //   No Act steps needed
+    // Assert
+    expect(screen.getByText("Vite + React")).toBeInTheDocument();
+  });
 
-  fireEvent.click(screen.getByText(/count is 0/i));
+  test("Renders the button", () => {
+    // Act
+    //   No Act steps needed
+    // Assert
+    //   Check if the initial count is 0
+    expect(screen.getByText(/count is 0/i)).toBeInTheDocument();
+  });
 
-  expect(screen.getByText(/count is 1/i)).toBeInTheDocument();
-})
+  test("Increments the count on button click", () => {
+    // Act
+    //   Click the increment button
+    fireEvent.click(screen.getByText(/count is 0/i));
+
+    // Assert
+    //   Check if the count is now 1
+    expect(screen.getByText(/count is 1/i)).toBeInTheDocument();
+  });
+});
